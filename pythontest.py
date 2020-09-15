@@ -24,9 +24,17 @@ with open('python_class_test.html') as python_class_test:
             result = color2.search(lines[i])
             lines_arr.append(result.group('stuff'))
 #   loop through each element in lines_arr and add only color names into colors_arr by removing the comma before appending
+    def remove_trailing_commas(n):
+        if not ',' in n:
+            return n
+        else:
+            return n[:n.find(',')]
+#   remove commas from color strings
     for ij in lines_arr:
         colors_arr += ij.split(', ')
+    colors_arr = list(map(remove_trailing_commas, colors_arr))
     print('TASK A', colors_arr)
+
 
 
 
@@ -44,8 +52,8 @@ print('TASK B', dictionary)
 #   TASK 1
 
 # sum up list of shirts and divide by len(shirt_arrays)  ie sum of dictionary values
-sumup = sum(dictionary.values())
-avg = sumup / len(colors_arr)
+sumup = sum(list(dictionary.values()))
+avg = sumup / 10
 print('TASK 1', avg)
 
 
@@ -168,12 +176,7 @@ def fibonacci_generator(arr=50):
 
 fibonacci_generator(50)
 
-
-
-
-
-
-#    TASK 6 - MIGRATE TO POSTGRES
+  # TASK 6 - MIGRATE TO POSTGRES
 print("TASK 6")
 username = input("Enter username")
 password_2 = input("Enter password again")
