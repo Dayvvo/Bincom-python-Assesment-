@@ -37,7 +37,7 @@ unique_arr = list(dict.fromkeys(colors_arr))
 dictionary = {}
 for i in unique_arr:
     dictionary[i] = colors_arr.count(i)
-print('TASK B', dictionary,
+print('TASK B', dictionary)
 
 
 
@@ -45,7 +45,6 @@ print('TASK B', dictionary,
 
 # sum up list of shirts and divide by len(shirt_arrays)  ie sum of dictionary values
 sumup = sum(dictionary.values())
-
 avg = sumup / len(colors_arr)
 print('TASK 1', avg)
 
@@ -93,28 +92,10 @@ print('TASK 4- Variance: ', np.var(list(dictionary.values())))
 
 # calculate probability = required outcome / possible outcomes
 red_probability = dictionary["RED"] / sum(dictionary.values())
-print("TASK 5", red_probability)
+print("TASK 5-Probability", red_probability)
 
 
 
-
-
-
-
-#   TASK 6 - MIGRATE TO POSTGRES
-
-username = input("Enter username")
-password_2 = input("Enter password again")
-port = input("Enter port")
-host = input("Enter host IP")
-while password != password_2:
-    password = input("both passwords must match")
-else:
-    # connect = postgres.connect("postgres", username, password, port, host)
-    insert_query = (
-        f"INSERT INTO color_table (color, frequency) VALUES {dictionary.items()}"
-    )
-    # postgres.insert_todo(insert_query, connect)
 
 
 
@@ -137,8 +118,12 @@ def binary_search(sorted_array, element):
                     end = middle - 1
                 elif sorted_array[middle] < element:
                     start = middle + 1
-    return found
+    if found:
+        return "Task 7, Element Found"
+    else:
+        return "Task 7, Not Found"
 
+print(binary_search([i for i in range(10)], 16))
 
 
 
@@ -151,7 +136,15 @@ def random_int():
     for ii in range(4):
 #   catenate int_val with a randomly generated binary digit
         int_value += str(random.randint(0, 1))
-    print(int(int_value, base=2), int_value)
+    print("TASK 8 - RANDOM DIGIT: ", int(int_value, base=2), int_value)
+
+
+random_int()
+
+
+
+
+
 
 
 
@@ -164,15 +157,34 @@ def fibonacci_generator(arr=50):
     for fb in range(arr):
 # if fb = 0 append
         if fb == 0:
-            arr2.append(i)
+            arr2.append(fb)
 #   if fb = 1 append 0 + 1
         elif fb == 1:
-            arr2.append(fb+(arr2[fb-1]))
+            arr2.append(fb + int(arr2[fb-1]))
 # else append sum of two previous array elements
         else:
-            arr2.append((arr2[fb-1] + arr2[fb-2]))
-    print(arr2)
+            arr2.append(int(arr2[fb-1] + int(arr2[fb-2])) )
+    print("TASK 9:", arr2)
+
+fibonacci_generator(50)
 
 
 
+
+
+
+#    TASK 6 - MIGRATE TO POSTGRES
+print("TASK 6")
+username = input("Enter username")
+password_2 = input("Enter password again")
+port = input("Enter port")
+host = input("Enter host IP")
+while password != password_2:
+    password = input("both passwords must match")
+else:
+    # connect = postgres.connect("postgres", username, password, port, host)
+    insert_query = (
+        f"INSERT INTO color_table (color, frequency) VALUES {dictionary.items()}"
+    )
+    # postgres.insert_todo(insert_query, connect)
 
